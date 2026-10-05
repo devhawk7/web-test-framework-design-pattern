@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    tools { maven 'Maven3'; jdk 'JDK17' }   // names from Jenkins "Global Tool Configuration"
+
+    parameters {
+        choice(name: 'BROWSER',  choices: ['chrome', 'firefox', 'edge'],    description: 'Browser')
+        choice(name: 'ENV',      choices: ['qa', 'staging'],                description: 'Environment')
+        choice(name: 'SUITE',    choices: ['smoke', 'regression'],          description: 'TestNG suite')
+        booleanParam(name: 'HEADLESS', defaultValue: true,                  description: 'Headless mode')
+    }
+
+    stages {
+        stage('Test') {
+            steps {
+                sh "mvn -B clean test -Dbrowser=${params.BROWSER} -Denv=${params.ENV} -Dsuite=${params.SUITE} -Dheadless=${params.HEADLESS}"
+            }
+        }
+    }
+
+    post {
+        always {
+            junit testResults: 'target/surefire-reports/TEST-*.xml', allowEmptyResults: true  // test result trend graph
+            archiveArtifacts artifacts: 'target/screenshots/**, logs/**', allowEmptyArchive: true
+        }
+    }
+}
