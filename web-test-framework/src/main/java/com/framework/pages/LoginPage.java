@@ -7,9 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
-    @FindBy(id = "user-name")    private WebElement usernameInput;
-    @FindBy(id = "password")     private WebElement passwordInput;
-    @FindBy(id = "login-button") private WebElement loginButton;
+    @FindBy(id= "user-name")    private WebElement usernameInput;
+    @FindBy(id= "password")     private WebElement passwordInput;
+    @FindBy(id= "login-button") private WebElement loginButton;
     @FindBy(css = "[data-test='error']") private WebElement errorMessage;
 
     public LoginPage(WebDriver driver) {

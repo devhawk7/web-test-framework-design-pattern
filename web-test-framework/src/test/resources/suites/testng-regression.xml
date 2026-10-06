@@ -2,6 +2,7 @@
 <suite name="Regression Suite">
   <listeners>
     <listener class-name="com.framework.listeners.TestListener"/>
+    <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
   </listeners>
   <test name="Regression">
     <groups><run><include name="regression"/></run></groups>
