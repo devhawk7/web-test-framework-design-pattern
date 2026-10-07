@@ -10,7 +10,9 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- Defaults; override from CLI / CI: -Dbrowser=firefox -Denv=staging -Dsuite=regression -Dheadless=true -->
+
+    <cucumber.version>7.34.9</cucumber.version>
+
     <browser>chrome</browser>
     <env>qa</env>
     <suite>smoke</suite>
@@ -18,6 +20,19 @@
   </properties>
 
   <dependencies>
+    <!-- Cucumber -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
 
     <!-- Selenium -->
     <dependency>
